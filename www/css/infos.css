@@ -1,0 +1,135 @@
+@-webkit-keyframes player_preview_anim{
+	from{
+		background-position-x:0px;
+	}	
+	to{
+		background-position-x:-2048px;
+	}
+}
+
+@font-face{
+	font-family : gun4f;
+	src : url(../font/gun4f.ttf);
+}
+
+@font-face{
+	font-family : gun4fc;
+	src : url(../font/gun4fc.ttf);
+}
+
+.player_name{
+	text-align : center;
+	font-family : gun4f, sans-serif;
+	color : white;
+	font-size : 30px;
+	text-shadow: 
+	-2px -2px 0 black, 
+	2px -2px 0 black,
+	-2px 2px 0 black,
+	2px 2px 0 black,
+	-3px 3px 20px white,
+	3px -3px 20px white,
+	-3px -3px 20px white,
+	3px 3px 20px white;
+	margin-top : 10px;
+}
+
+.player_title{
+	margin-top : 5px;
+	text-align : center;
+	font-family : gun4fc, sans-serif;
+	color : yellow;
+	font-size : 20px;
+	font-style : italic;
+	text-shadow: 
+	-2px -2px 0 black, 
+	2px -2px 0 black,
+	-2px 2px 0 black,
+	2px 2px 0 black;
+}
+
+.window.enabled .player_preview{
+	-webkit-animation : player_preview_anim 1s infinite alternate;
+	-webkit-animation-timing-function: steps(8);
+}
+
+.player_preview{
+	background-image : url(../img/sprite/selection-1-2-1.png);
+	width : 256px;
+	height : 256px;
+	position :absolute;
+	top : 0;
+	left : 0;
+	margin-top : 70px;
+	margin-left : 70px;
+}
+
+.player_progress{
+	margin-top : 5px;
+	background-image : url(../img/images/icon-star-off.png);
+	width : 70px;
+	height : 14px;
+	margin : auto;
+	margin-top : 5px;
+}
+
+.player_progress_indic{
+	background-image : url(../img/images/icon-star-on.png);
+	width : 50%;
+	height : 100%;
+}
+
+#infos dl{
+	color : white;
+	position :absolute;
+	left : 10px;
+	bottom : 5px;
+	margin : 0;
+	width : 60%;
+	text-shadow: 
+	-1px -1px 0 black, 
+	1px -1px 0 black,
+	-1px 1px 0 black,
+	1px 1px 0 black;
+}
+
+#infos dt{
+	text-align : left;
+	float:left;
+	width:170px; 
+	margin : 0;
+}
+
+#infos dt:after{
+	content: " :";
+}
+
+#infos dd{
+	text-align : right;
+	margin : 0;
+}
+
+.xp{
+	background-image : url(../img/images/icon-xp-small.png);
+	background-repeat : no-repeat;
+	background-position : right center;
+	padding-right : 24px;
+	color : skyblue;
+}
+
+.hp{
+	background-image : url(../img/images/heart.png);
+	background-repeat : no-repeat;
+	background-position : right center;
+	padding-right : 24px;
+	color : #F88;
+}
+
+.power{
+	background-image : url(../img/images/icon-ep-small.png);
+	background-repeat : no-repeat;
+	background-position : right center;
+	padding-right : 24px;
+	color : #F90;
+}
+

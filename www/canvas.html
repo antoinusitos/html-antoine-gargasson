@@ -1,0 +1,161 @@
+<!-- 
+
+!!!! le canvas est une image et va déformer les objets qu'il contient en CSS!!!!
+!!!! modifier en js pour pas de déformation !!!!
+
+canvas garde les proportions width = height en cas de déformation d'une seule taille
+
+
+fillStyle = remplissage
+strokeStyle = contour
+
+-->
+
+<!doctype html>
+<html>
+	<head>
+		<style>
+		canvas{
+			/*background-color: red;*/
+			border : 1px solid black;
+			position : absolute;
+			top :0px;
+			left : 200px;
+		}
+		</style>
+	</head>
+	<body>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		okjhreu a eaur aeu rheau rue ar eara<br/>
+		<canvas id="mon-canvas"></canvas>
+		<script>
+		var circleYTarget = 100;
+		var circleY = circleYTarget;
+		var circleXTarget = 200;
+		var circleX  = circleXTarget;
+		var startMoveX = 0;
+		var startMoveY = 0;
+		
+		var moveTime = 0;
+		var MOVE_DURATION = 1000;
+		
+		var EPSILON = 0.001;
+		
+		var timeData = {
+			global:Date.now(),
+			globalDelta:0,
+			local:0,
+			localDelta:0
+		};
+		
+		var moveTo = function(x,y){
+			startMoveX = circleX;
+			startMoveY = circleY;
+			circleYTarget = y;
+			circleXTarget = x;
+			moveTime = timeData.local;
+		};
+		
+		var canvas = document.getElementById('mon-canvas');
+		
+		var paint = function(){
+			var now = Date.now();
+			timeData.globalDelta = now - timeData.global;
+			timeData.global = now;
+			
+			timeData.localDelta = Math.min(50,timeData.globalDelta);
+			timeData.local += timeData.localDelta;
+			
+			
+			canvas.width = 400;
+			canvas.height = 400;
+			canvas.addEventListener('click', function(e){
+				moveTo(e.clientX - canvas.offsetLeft, e.clientY- canvas.offsetTop);
+			});
+			var g = canvas.getContext('2d');
+			g.clearRect(0,0,canvas.width, canvas.height);
+			g.fillStyle = "rgba(0,0,255,0.5)";
+			g.strokeStyle = "white";
+			g.fillRect(50, 20, 100, 100);
+			
+			g.font = "italic bold 100px sans-serif";
+			g.strokeStyle = "black";
+			g.lineWidth = 5;
+			g.fillStyle = "red";
+			g.fillText("Hello!", 100,100);
+			g.strokeText("Hello!", 100,100);
+			
+			g.beginPath();
+			g.moveTo(200,200);
+			g.lineTo(250,200);
+			g.lineTo(225,300);
+			g.closePath();
+			g.fill();
+			g.stroke();
+			
+			
+			g.save();
+				/*if(Math.abs(circleY - circleYTarget) > EPSILON){
+					circleY += (circleYTarget - circleY ) * 0.1 * timeData.localDelta / 1000;
+				}*/
+				if(moveTime && timeData.local < moveTime + MOVE_DURATION){
+					var f = (timeData.local - moveTime)/MOVE_DURATION;
+					
+					/* easeIn>1 , 0>easeOut>1 */
+					f = Math.pow(f,5)
+					
+					circleX = f * (circleXTarget - startMoveX) + startMoveX;
+					circleY = f * (circleYTarget - startMoveY) + startMoveY;
+				}
+				else if(circleX != circleXTarget){
+					circleX = circleXTarget;
+					circleY = circleYTarget;
+				}
+				
+				g.translate(circleX,circleY);
+				var time = Date.now();
+				var radius = 50 + Math.sin(time * Math.PI * 2/1000) * 10;
+				var gradient = g.createLinearGradient(circleY,-radius, circleY, radius);
+				gradient.addColorStop(0, "rgba(255,0,0,1)");
+				gradient.addColorStop(1, "rgba(255,255,0,1)");
+				g.fillStyle = gradient;
+				g.beginPath();
+				g.arc(0,0,radius,0,Math.PI * 2, false);
+				g.closePath();
+				g.fill();
+				g.stroke();
+			g.restore();
+			
+			/*var img = document.createElement('img'); ou ↓*/
+			var img = new Image();
+			var img2 = new Image();
+			//document.body.appendChild(img);
+			img.src = "img/idle-1.png";
+			img2.src = "img/player.png";
+			img.addEventListener('load', function(){
+				g.drawImage(img, 10,100);
+				g.drawImage(img, 20, 30, img.width / 2, img.height / 2, 10, 200, img.width, img.height);
+				/* drawImage(image, OriginX, OriginY, longueurOriginX, longueurOriginY, posX, posY, tailleX, tailleY); */
+				g.drawImage(img2, 0, 0, img2.width / 3, img2.height / 4, 200, 200, 32, 32);
+			});
+			
+			requestAnimationFrame(paint);
+		};
+		window.addEventListener('load', paint);
+		</script>
+	</body>
+</html>

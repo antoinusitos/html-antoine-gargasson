@@ -1,0 +1,111 @@
+@-webkit-keyframes mon-anim{
+	from{
+		margin-left : 0px;
+	}
+	to{
+		margin-left : 100px;
+	}
+}
+@keyframes mon-anim{
+	from{
+		margin-left : 0px;
+	}
+	to{
+		margin-left : 100px;
+	}
+}
+
+@-webkit-keyframes text-anim{
+	from{
+		transform : rotate3d(0,0,0,0deg);
+		background-color : rgba(0,0,0,0.8);
+	}
+	to{
+		transform : rotate3d(0,5,0,360deg);
+		background-color : rgba(255,255,255,0.8);
+	}
+}
+
+.window{
+	height : 350px;
+	position : absolute;
+	background-color : rgba(100,100,255,0.8);
+	left : 10px;
+	top : 10px;
+	border : white solid 2px;
+	opacity : 0;
+	margin-left : 100%;
+	transform : rotate(360deg);
+	transition : all 1s cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	transition-property : opacity margin-left;
+	width : 564px;
+}
+
+.window.enabled{
+	transform : rotate(0deg);
+	margin-left : 0%;
+	opacity : 1;
+}
+
+#menu-switch{
+	position : absolute;
+	left : 10px;
+	bottom : 10px;
+	/* -webkit-animation : mon-anim 1s infinite alternate;
+	animation : mon-anim 1s infinite;*/
+}
+
+#mute{
+	position : absolute;
+	left : 60px;
+	bottom : 10px;
+	/* -webkit-animation : mon-anim 1s infinite alternate;
+	animation : mon-anim 1s infinite;*/
+}
+
+.menu{
+	font-size : 14px;
+	float : left;
+	border-right : white solid 2px;
+	width : 160px;
+	height : 100%;
+}
+
+.menu ul{
+	list-style: none;
+	margin : 0;
+}
+
+.menu li{
+	border : white solid 1px;
+	background : url(../img/images/goal.png) left center no-repeat;
+	padding-left: 40px; 
+	height : 40px;
+	margin-left : -40px;
+	line-height: 40px;
+	box-shadow : 0 5px 5px #000;
+}
+
+.menu li:hover{
+	-webkit-animation : text-anim 5s infinite alternate linear;
+}
+
+.menu .selected,.menu li:active{
+	background : url(../img/images/goal-done.png) left center no-repeat;
+	color : white;
+	background-color : rgba(0,0,0,0.5);
+}
+
+.content-visible{
+	float : left;
+	background-color : rgba(0,0,0,0.5);
+	text-align: center;
+	font-size : 14px;
+	width : 400px;
+	height : 100%;
+	position : relative;
+}
+
+.content-invisible{
+	display : none;
+}

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Cours Web</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		<link rel="stylesheet" type="text/css" href="css/gui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/scene.css"/>
+		<link rel="stylesheet" type="text/css" href="css/infos.css"/>
+        <script src="loadingData.json"></script>
+        <script src="js/Easing.js"></script>
+		<script src="js/Game.js"></script>
+        <script src="js/AssetManager.js"></script>
+		<script src="js/Character.js"></script>
+		<script src="js/Player.js"></script>
+		<script src="js/Enemy.js"></script>
+		<script src="js/Scene.js"></script>
+		<script src="js/Sprite.js"></script>
+		<script src="js/Main.js"></script>
+	</head>
+	<body>
+	<div id="screen">
+		<!--<div id="scene-view">
+			<div id="scene">
+				<div id="player" class="character player"></div>
+				<div id="ennemy1" class="character ennemy"></div>
+				<div id="ennemy2" class="character ennemy"></div>
+			</div>
+		</div> -->
+		<canvas id="game"></canvas>
+		<div id="gui">
+			<div id="main-win" class="window">
+				<div class="menu">
+					<ul>
+						<li id="InfoButton" class="selected" onclick="switchMenu('InfoButton','infos')"> Infos</li>
+						<li id="EquipButton" onclick="switchMenu('EquipButton','equipement')">Equipement</li>
+						<li id="StatsButton" onclick="switchMenu('StatsButton','stats')">Statistiques</li>
+					</ul>
+				</div>
+				<div id="infos" class="content-visible">
+					<div class="player_name">ULRICH</div>
+					<div class="player_title">samouraï</div>
+					<div class="player_progress">
+						<div class="player_progress_indic"></div>
+					</div>
+					<div class="player_preview"></div>
+					<dl>
+						<dt>XP</dt>
+						<dd class="xp">324</dd>
+						<dt>HP</dt>
+						<dd class="hp">3277</dd>
+						<dt>Puissance</dt>
+						<dd class="power">2</dd>
+					</dl>
+				</div>
+				<div id="equipement" class="content-invisible">j'ai cliqué sur le bouton equipement et ça a marché !</div>
+				<div id="stats" class="content-invisible">bravos ! tu as réussi à cliquer sur le bouton stats et ça a bien marché !</div>
+
+			</div>
+		</div>
+		<button id="menu-switch" onclick="switchWindow()">Menu</button>
+        <button id="mute" onclick="switchMusic()">Music</button>
+	</div>
+	</body>
+</html>

@@ -1,0 +1,61 @@
+@-webkit-keyframes ennemy_preview_anim{
+	from{
+		background-position-x:0px;
+	}	
+	to{
+		background-position-x:-2048px;
+	}
+}
+
+@-webkit-keyframes player_preview_anim{
+	from{
+		background-position-x:0px;
+	}	
+	to{
+		background-position-x:-2048px;
+	}
+}
+
+#scene{
+	background-image : url(../img/forest.jpg);
+	width : 4096px;
+	height : 2037px;
+	position :absolute;
+	top : -1340px;
+	left : -3291px;
+}
+
+.character{
+	position :absolute;
+}
+
+.player{
+	background-image : url(../img/idle-1-2-1.png);
+	width : 128px;
+	height : 128px;
+}
+
+.ennemy{
+	background-image : url(../img/idle-1.png);
+	width : 128px;
+	height : 128px;
+	-webkit-animation : ennemy_preview_anim 1s infinite alternate;
+	-webkit-animation-timing-function: steps(16);
+}
+
+#player{
+	top : 1740px;
+	left : 3685px;
+	/*-webkit-animation : player_preview_anim 1s 1 alternate;
+	-webkit-animation-timing-function: steps(16);*/
+}
+
+#ennemy1{
+	top : 1670px;
+	left : 3795px;
+}
+
+#ennemy2{
+	top : 1740px;
+	left : 3885px;
+}
